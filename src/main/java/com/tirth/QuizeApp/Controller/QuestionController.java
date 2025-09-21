@@ -3,6 +3,8 @@ package com.tirth.QuizeApp.Controller;
 import com.tirth.QuizeApp.Controller.Question;
 import com.tirth.QuizeApp.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +17,8 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping("allQuestions")
-    public List<Question> getAllQuestions() {
-        return questionService.getAllQuestions();  // returns JSON
+    public ResponseEntity<List<Question>> getAllQuestions() {
+        return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);  // returns JSON
     }
 
     @GetMapping("category/{category}")
